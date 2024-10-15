@@ -23,15 +23,12 @@ h1{
     font-size: 40px
 }
 
-html{
-    height: 100%;
-    overflow: hidden;
-}
+
 
 section{
     background-color: rgb(245, 245, 245);
     transition: all 300ms ease;
-    height: 200vh;
+    height: 40vh;
 }
 
 .link-hover-effect{
@@ -60,15 +57,25 @@ section{
 .dark-theme .menu-dropdown,
 .dark-theme .search-title,
 .dark-theme .search-subtitle,
-.dark-theme .songs-title{
+.dark-theme .songs-title,
+.dark-theme .footer__copyright,
+.dark-theme .footer__soical--links,
+.dark-theme .footer__logo--popper{
     color: white;
 }
 
 .dark-theme .btn,
 .dark-theme .btn-search,
-.dark-theme .gray{
+.dark-theme .gray,
+.dark-theme .star-fall,
+.dark-theme .star-fall::before{
     background-color: white;
     color: black;
+}
+
+.dark-theme .star-fall,
+.dark-theme .star-fall::before{
+    box-shadow: 0 0 0 4px rgba(#fff),0 0 0 8px rgba(#fff),0 0 20px rgba(#fff);
 }
 
 .dark-theme section,
@@ -79,6 +86,10 @@ section{
 
 .dark-theme .spotify-logo{
     filter: invert(1);
+}
+
+.dark-theme .footer_img{
+    filter: invert(0);
 }
 
 .dark-theme .scroll-icon{
@@ -194,12 +205,24 @@ nav{
     cursor: pointer;
 }
 
+
+.menu_backdrop-container{
+    display: none;
+}
+
+
 @media (max-width:480px) {
     .nav-link:not(:last-child){
         display: none;
     }
     .menu-dropdown{
         display: block;
+    }
+    .search-subtitle{
+        font-size: 16px;
+    }
+    .search-title{
+        text-align: center;
     }
 }
 
@@ -265,7 +288,7 @@ nav{
 .search-img{
     position: absolute;
     filter: invert(1);
-    top: 80%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%,-50%);
     width: 100%;
@@ -281,3 +304,185 @@ nav{
     display: flex;
     justify-content: center;
 }
+
+/* SHOOTING STAR */
+
+
+
+@keyframes animateBg{
+    0%,100%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.2);
+    }
+}
+
+.star-fall{
+    position: absolute;
+    top:50%;
+    left:50%;
+    width: 4px;
+    height: 4px;
+    background: #242424;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.1),0 0 0 8px rgba(255,255,255,0.1),0 0 20px rgba(255,255,255,0.1);
+    animation: animate 3s linear infinite;
+    z-index: 1;
+}
+.star-fall::before{
+    content:'';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 1px;
+    background: linear-gradient(90deg,#242424,transparent);
+    z-index: 1;
+
+}
+@keyframes animate
+{
+    0%
+    {
+        transform: rotate(315deg) translateX(0);
+        opacity: 1;
+    }
+    70%
+    {
+        opacity: 1;
+    }
+    100%
+    {
+        transform: rotate(315deg) translateX(-1000px);
+        opacity: 0;
+    }
+}
+.star-fall:nth-child(1){
+    top: 0;
+    right: 0;
+    left: initial;
+    animation-delay: 0s;
+    animation-duration: 1s;
+}
+.star-fall:nth-child(2){
+    top: 0;
+    right: 80px;
+    left: initial;
+    animation-delay: 0.2s;
+    animation-duration: 3s;
+}
+.star-fall:nth-child(3){
+    top: 80;
+    right: 0px;
+    left: initial;
+    animation-delay: 0.4s;
+    animation-duration: 2s;
+}
+.star-fall:nth-child(4){
+    top: 0;
+    right: 180px;
+    left: initial;
+    animation-delay: 0.6s;
+    animation-duration: 1.5s;
+}
+.star-fall:nth-child(5){
+    top: 0;
+    right: 400px;
+    left: initial;
+    animation-delay: 0.8s;
+    animation-duration: 2.5s;
+}
+.star-fall:nth-child(6){
+    top: 0;
+    right: 600px;
+    left: initial;
+    animation-delay: 1s;
+    animation-duration: 3s;
+}
+.star-fall:nth-child(7){
+    top: 300px;
+    right: 0px;
+    left: initial;
+    animation-delay: 1.2s;
+    animation-duration: 1.75s;
+}
+.star-fall:nth-child(8){
+    top: 0px;
+    right: 700px;
+    left: initial;
+    animation-delay: 1.4s;
+    animation-duration: 1.25s;
+}
+.star-fall:nth-child(9){
+    top: 0px;
+    right: 1000px;
+    left: initial;
+    animation-delay: 0.75s;
+    animation-duration: 2.25s;
+}
+.star-fall:nth-child(9){
+    top: 0px;
+    right: 450px;
+    left: initial;
+    animation-delay: 2.75s;
+    animation-duration: 2.75s;
+}
+
+
+
+
+/* FOOTER */
+
+
+
+footer {
+    background-color: rgb(245,245,245);
+    position: relative;
+}
+  
+  .footer__row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8% 0;
+  }
+  
+  .footer_img {
+    filter: invert(1);
+    width: 200px;
+    height: 200px;
+  }
+  
+  .footer__soical--list {
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .footer__soical--links,
+  .footer__logo--popper,
+  .footer__copyright {
+    color: black;
+  }
+  
+  .footer__logo--popper {
+    position: absolute;
+    left: 80px;
+    bottom: 88px;
+    font-weight: 700;
+    opacity: 0;
+    transition: all 300ms ease-in-out;
+  }
+  
+  .footer__anchor {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .footer__anchor:hover .footer__logo--popper {
+    transform: translateX(100px);
+    opacity: 1;
+  }

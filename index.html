@@ -37,6 +37,21 @@
               >
             </li>
             <button class="menu-dropdown"><i class="fa-solid fa-caret-down"></i></button>
+            <div class="menu_backdrop"></div>
+                <div class="menu_backdrop-container">
+                <button class="btn_menu btn_menu--close" onclick="closeMenu()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul class="menu_links">
+                    <li class="menu_list"><a href="#Highlights" class="menu_link" onclick="closeMenu()" >About</a></li>
+                    <li class="menu_list"><a href="#steps" class="menu_link" onclick="closeMenu()" >Blog</a></li>
+                    <li class="menu_list"><a href="#Pricing" class="menu_link" onclick="closeMenu()" >Pricing</a></li>
+                    <li class="menu_list"><a href="#footer" class="menu_link no-cursor" onclick="closeMenu()" >Contact</a></li>
+                    <li class="menu_list"><a href="#" class="menu_link no-cursor" onclick="closeMenu()" >Login</a></li>
+                    <li class="menu_list"><a href="#" class="menu_link no-cursor menu_signup" onclick="closeMenu()" >Sign Up</a></li>
+                 </ul>
+                </div>
+            </div>
             <li class="nav-link click" onclick="toggleContrast()">
               <a href="#" class="nav-link-anchor"
                 ><i class="fa-solid fa-circle-half-stroke fa-spin"></i
@@ -51,7 +66,7 @@
                 <div class="input-box">
                     <input type="text" required placeholder="Search by Song name, artist, album or release year" id="searchInput" />
                     <div class="btn-search">
-                        <button class="btn" id="searchButton"><span class="gray">Search</button>
+                        <a href="./song.html"><button class="btn" id="searchButton"><span class="gray">Search</button></a>
                     </div>
                 </div>
                 
@@ -59,7 +74,7 @@
                     <img class="search-img" src="./assets/wp8733088.png" alt="" />
                 </div>
             </div>
-        </div> 
+        </div>
         <div class="cursor">
               <div class="circle"></div>
               <div class="circle"></div>
@@ -82,6 +97,62 @@
               <div class="circle"></div>
               <div class="circle"></div>
         </div>      
-    </section>         
+    </section>
+    <section>
+            <span class="star-fall"></span>
+            <span class="star-fall"></span>
+            <span class="star-fall"></span>
+            <span class="star-fall"></span>
+            <span class="star-fall"></span>
+            <span class="star-fall"></span>
+            <span class="star-fall"></span>
+            <span class="star-fall"></span>
+            <span class="star-fall"></span>
+            <span class="star-fall"></span>
+        </section>
+    <footer >
+        <div class="row footer__row">
+          <a href="#" class="footer__anchor">
+            <figure class="footer__logo">
+              <img
+                src="./assets/Gray and Black Simple Studio Logo_processed.png"
+                class="footer_img"
+                alt=""
+              />
+            </figure>
+            <span class="footer__logo--popper">
+              Top
+              <i class="fas fa-arrow-up"></i>
+            </span>
+          </a>
+          <div class="footer__soical--list">
+            <a
+              href="https://github.com/Jkeroro69"
+              class="footer__soical--links link-hover-effect link-hover-effect--white"
+              target="_blank"
+              >Github</a
+            >
+            <a
+              href="https://www.linkedin.com/in/zexin-zou-4b7236155/"
+              class="footer__soical--links link-hover-effect link-hover-effect--white"
+              target="_blank"
+              >linkedin</a
+            >
+            <a
+              href="mailto:zzou2000@gmail.com"
+              class="footer__soical--links link-hover-effect link-hover-effect--white"
+              target="_blank"
+              >Email</a
+            >
+            <a
+              href="https://discord.gg/UVwaXxK77b"
+              class="footer__soical--links link-hover-effect link-hover-effect--white"
+              target="_blank"
+              >Discord</a
+            >
+          </div>
+          <div class="footer__copyright">Copyright © 2024 Zexin Zou</div>
+        </div>
+      </footer>    
 </body>
 </html>
