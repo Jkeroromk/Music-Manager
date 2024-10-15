@@ -526,6 +526,7 @@ song page
     justify-content: center;
     align-items: center;
     padding-top: 24px;
+    font-size: 10px;
 }
 
 .songs-wrapper{
