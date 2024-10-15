@@ -58,6 +58,33 @@ animateCircles();
 
 // ANIMATE CUSOR
 
+document.addEventListener('DOMContentLoaded', function() {
+  const searchButton = document.getElementById('searchButton');
+  const searchInput = document.getElementById('searchInput');
+  let errorMessage = '';
+
+  searchButton.addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Remove existing error message if any
+      if (errorMessage) {
+          errorMessage.remove();
+          errorMessage = null;
+      }
+
+      if (searchInput.value.trim() === '') {
+          // Create and display error message
+          errorMessage = document.createElement('div');
+          errorMessage.textContent = 'Please enter a search term';
+          errorMessage.style.color = 'red';
+          errorMessage.style.marginTop = '5px';
+          searchInput.parentNode.appendChild(errorMessage);
+
+          // Focus on the input field
+          searchInput.focus();
+      }
+  });
+});
 
 // f5eb93d5379d4b3b9dcbd6ea3d8d4a31 client id
 // a46a3ac979964d9d8f3cb3152e3a1cbe client secret 
