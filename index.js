@@ -89,6 +89,3 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
   
-
-// f5eb93d5379d4b3b9dcbd6ea3d8d4a31 client id
-// a46a3ac979964d9d8f3cb3152e3a1cbe client secret 

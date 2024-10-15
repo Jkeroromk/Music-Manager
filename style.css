@@ -528,7 +528,18 @@ song page
     padding-top: 24px;
 }
 
+.songs-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
+#search-results{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction:row
+}
 
 
 
