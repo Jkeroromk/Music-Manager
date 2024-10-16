@@ -27,7 +27,8 @@ html{
     scroll-behavior: smooth;
 }
 
-section{
+section,
+footer{
     background-color: rgb(245, 245, 245);
     transition: all 300ms ease;
 }
@@ -62,7 +63,11 @@ section{
 .dark-theme .footer__logo--popper,
 .dark-theme .fa-solid,
 .dark-theme .menu_link,
-.dark-theme .btn_menu--close{
+.dark-theme .btn_menu--close,
+.dark-theme .column-info,
+.dark-theme h2,
+.dark-theme h3,
+.dark-theme h4{
     color: white;
 }
 
@@ -177,6 +182,11 @@ input:focus {
       display: none !important;
     }
   }
+
+img{
+    width: 100px;
+    height: auto;
+}
   
 
 /* NAVAGATION  */
@@ -498,7 +508,7 @@ footer {
     bottom: 88px;
     font-weight: 700;
     opacity: 0;
-    transition: all 300ms ease-in-out;
+    transition: all 300ms ease;
   }
   
   .footer__anchor {
@@ -525,23 +535,90 @@ song page
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 24px;
-    font-size: 10px;
 }
 
-.songs-wrapper{
+.songs-container {
+    max-width: 1200px; /* Adjust this value as needed */
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.songs-row{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.sepre{
+    margin: 24px 0;
+    width: 100%;
+    border: solid 1px;
+    justify-content: center;
+    padding: 0 24px;
+    border-bottom-width: 1px;
+    border-color: rgb(151, 148, 148);
+}
+
+.songs-title-wrapper{
+    padding-top: 60px;
+}
+
+.results-row{
+    display: flex;
+    flex-direction: column;
+    height: grid;
+
+}
+
+.songs-title-wrapper,
+.results-lists {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr 2fr;
+    gap: 10px;
+    margin-left: 40px;
+}
+
+.column-info {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Ensure consistent text alignment */
+.songs-title-wrapper .column-info,
+.results-lists .column-info:not(:first-child) {
+    display: flex;
+    align-items: center;
+    padding-top:20px;
+}
+
+.pagination{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px;
+    gap: 20px;
+}
+
+.page-btn{
+    display: flex;
+    font-size: 16px;
+    font-weight: 700;
+    color: rgb(247, 250, 252);
+    background-color:black;
+    border: none;
+    border-radius: 999px;
+    padding: 8px 10px;
+    cursor: pointer;
+    overflow: hidden; 
+    z-index: 2;
+    max-width: 200px;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
-
-#search-results{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction:row
-}
-
-
-
-
