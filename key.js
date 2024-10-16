@@ -58,18 +58,21 @@ function renderSongs(songs) {
     });
 }
 
-document.getElementById('searchButton').addEventListener('click', async () => {
-    const userInput = document.getElementById('searchInput').value; 
-    if (!userInput) {
-        alert('Please enter the keyword');
-        return;
-    }
-
-    try {
-        const accessToken = await getAccessToken();
-        const songs = await fetchSongs(accessToken, userInput);
-        renderSongs(songs);
-    } catch (error) {
-        console.error(error);
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+        
+            const userInput = document.querySelector('.searchInput').value;
+            if (!userInput) {
+                alert('Please enter an keyword');
+                return;
+            }
+            const queryString = encodeURIComponent(userInput);
+            window.location.href = `./song.html?query=${queryString}`;
+        });
+    });
 });
+
+
+

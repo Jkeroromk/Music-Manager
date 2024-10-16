@@ -589,6 +589,29 @@ song page
     white-space: nowrap;
 }
 
+.songs-loading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 120px;
+    padding-bottom: 120px;
+    font-size: 60px;
+    color: #242424;
+  }
+  
+  .song-loading-spinner{
+    display: none !important;
+  }
+  
+  .songs-loading .songs-loading-spinner{
+    display: block !important;
+  }
+  
+  
+  .fa-hourglass-half {
+    animation: rotate  2000ms infinite linear;
+  }
+
 /* Ensure consistent text alignment */
 .songs-title-wrapper .column-info,
 .results-lists .column-info:not(:first-child) {
