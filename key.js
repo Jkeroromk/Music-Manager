@@ -44,13 +44,13 @@ function renderSongs(songs) {
                 <img src="${song.album.images[0].url}" alt="${song.name} cover" style="width: 100px; height: 100px;">
             </span>
             <span class="column-info column-title">
-                <a href="${song.external_urls.spotify}" class="nav-link-anchor link-hover-effect link-hover-effect-black link-hover-effect--white" target="_blank">${song.name}</a>
+                <a href="${song.external_urls.spotify}" class="link-hover-effect link-hover-effect-black link-hover-effect--white" target="_blank">${song.name}</a>
             </span>
             <span class="column-info column-artist">
-                <a href="${song.artists[0].external_urls.spotify}" class="nav-link-anchor link-hover-effect link-hover-effect-black link-hover-effect--white" target="_blank">${song.artists[0].name}</a>
+                <a href="${song.artists[0].external_urls.spotify}" class="link-hover-effect link-hover-effect-black link-hover-effect--white" target="_blank">${song.artists[0].name}</a>
             </span>
             <span class="column-info column-album">
-                <a href="${song.album.external_urls.spotify}" class="nav-link-anchor link-hover-effect link-hover-effect-black link-hover-effect--white" target="_blank">${song.album.name}</a>
+                <a href="${song.album.external_urls.spotify}" class="link-hover-effect link-hover-effect-black link-hover-effect--white" target="_blank">${song.album.name}</a>
             </span>
             <span class="column-info column-duration">${(song.duration_ms / 1000 / 60).toFixed(2)} min</span>
         </div>
