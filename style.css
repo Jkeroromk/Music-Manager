@@ -12,6 +12,8 @@ li{
 
 a{
     text-decoration: none;
+    color: #242424;
+    font-weight: 500;
 }
 
 p{
@@ -64,6 +66,7 @@ footer{
 .dark-theme .fa-solid,
 .dark-theme .menu_link,
 .dark-theme .btn_menu--close,
+.dark-theme .link-hover-effect,
 .dark-theme .column-info,
 .dark-theme h2,
 .dark-theme h3,
@@ -597,41 +600,43 @@ song page
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
-
-.column-info {
     color: inherit;
     text-decoration: none; 
 }
 
-.column-info:not(.header-title,.column-duration):hover {
-    text-decoration: underline; 
-    color: #242424;
-    font-weight: bold;
-}
 
-.songs-loading{
+
+
+#songs-loading {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 120px;
-    padding-bottom: 120px;
+    padding: 120px 0; /* Combined padding */
     font-size: 60px;
     color: #242424;
-  }
-  
-  .song-loading-spinner{
-    display: none !important;
-  }
-  
-  .songs-loading .songs-loading-spinner{
-    display: block !important;
-  }
-  
-  
-  .fa-hourglass-half {
-    animation: rotate  2000ms infinite linear;
-  }
+}
+
+#song-loading-spinner {
+    display: none; /* Default to none */
+}
+
+#songs-loading .songs-loading-spinner {
+    display: block; /* Show the spinner when loading */
+}
+
+.fa-hourglass-half {
+    animation: rotate 2000ms infinite linear;
+}
+
+/* Add a keyframe animation for rotation */
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
 /* Ensure consistent text alignment */
 .songs-title-wrapper .column-info,

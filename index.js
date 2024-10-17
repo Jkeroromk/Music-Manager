@@ -1,3 +1,4 @@
+
 function toggleModal() {
     document.body.classList.toggle("model__open");
   }
