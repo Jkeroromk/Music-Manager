@@ -7,6 +7,7 @@ const clientSecret = '961849266f2f41bd94c05f31fc67c01c';
 let currentPage = 1;
 const limit = 10;
 
+document.addEventListener('DOMContentLoaded', function() {
 // Functions to handle API interactions
 async function getAccessToken() {
     const credentials = btoa(`${clientId}:${clientSecret}`);
@@ -35,9 +36,14 @@ async function fetchSongs(accessToken, userInput) {
 }
 
 // Function to render song results
-function renderSongs(songs) {
+function renderSongs(songs, isFeatured = false) {
     const SongsWrapper = document.querySelector('.results-row');
-    SongsWrapper.innerHTML = songs.map((song, index) => `
+    const headingElement = document.createElement('h2');
+    headingElement.textContent = isFeatured ? 'Featured Songs' : 'Search Results';
+    SongsWrapper.innerHTML = '';
+    SongsWrapper.appendChild(headingElement);
+
+    SongsWrapper.innerHTML += songs.map((song, index) => `
         <div class="results-lists">
             <span class="column-info column-number">${index + 1}</span>
             <span class="column-info column-img">
@@ -57,34 +63,69 @@ function renderSongs(songs) {
     `).join('');
 }
 
+
+
 // Spinner Control Functions
 function showSpinner() {
-    document.getElementById('songs-loading').style.display = '';
+    const spinner = document.getElementById('songs-loading');
+    if (spinner) {
+        spinner.style.display = '';
+    }
 }
 
 function hideSpinner() {
-    document.getElementById('songs-loading').style.display = 'none';
+    const spinner = document.getElementById('songs-loading');
+    if (spinner) {
+        spinner.style.display = 'none';
+    }
 }
 
+
 // Search Handling
-document.addEventListener('DOMContentLoaded', () => {
+
     const searchForm = document.getElementById('searchForm');
     const urlParams = new URLSearchParams(window.location.search);
     const query = urlParams.get('query');
+    const findSongLink = document.getElementById('findsonglink');
+    const featured = urlParams.get('featured');
 
     if (searchForm) {
         searchForm.addEventListener('submit', function(event) {
-        event.preventDefault(); 
-        const userInput = document.getElementById('searchInput').value;
-        if (!userInput) {
-            alert('Please enter a keyword');
-            return;
-        }
-        const queryString = encodeURIComponent(userInput);
-        window.location.href = `./song.html?query=${queryString}`;
+            event.preventDefault(); 
+            const userInput = document.getElementById('searchInput').value;
+            if (!userInput) {
+                alert('Please enter a keyword');
+                return;
+            }
+            const queryString = encodeURIComponent(userInput);
+            window.location.href = `./song.html?query=${queryString}`;
         });
-      }
-    if (query) {
+    }
+
+    if (findSongLink) {
+        findSongLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = './song.html?featured=true';
+        });
+    }
+
+    if (featured === 'true') {
+        showSpinner();
+        getAccessToken()
+            .then(accessToken => fetchTopHits(accessToken))
+            .then(hits => {
+                setTimeout(() => {
+                    hideSpinner();
+                    renderSongs(hits, true);
+                }, 1000);
+            })
+            .catch(error => {
+                console.error(error);
+                hideSpinner();
+                alert('An error occurred while fetching featured songs.');
+            });
+    }
+    else if (query) {
         showSpinner();
         getAccessToken()
             .then(accessToken => fetchSongs(accessToken, query))
@@ -100,14 +141,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('An error occurred while fetching songs.');
             });
     }
-    if (!query) {
+    if (!query && featured !== 'true') {
         showSpinner();
         getAccessToken()
           .then(accessToken => fetchTopHits(accessToken))
           .then(hits => {
             setTimeout(() => {
               hideSpinner();
-              renderSongs(hits); // Render top hit songs
+              renderSongs(hits, true); // This should now work with the new data structure
             }, 1000);
           })
           .catch(error => {
@@ -115,16 +156,29 @@ document.addEventListener('DOMContentLoaded', () => {
             hideSpinner();
             alert('An error occurred while fetching top hits.');
           });
-      }
-    async function fetchTopHits(accessToken) {
-        const response = await fetch('https://api.spotify.com/v1/tracks?market=US&limit=10', {
+    }
+      async function fetchTopHits(accessToken) {
+        const response = await fetch("https://api.spotify.com/v1/browse/featured-playlists?limit=1", { 
             method: 'GET',
             headers: { 'Authorization': `Bearer ${accessToken}` }
         });
     
-        if (!response.ok) throw new Error('Failed to fetch top hits');
-        return (await response.json()).tracks;
+        if (!response.ok) throw new Error('Failed to fetch featured playlist');
+        
+        const data = await response.json();
+        const playlistId = data.playlists.items[0].id;
+    
+        const tracksResponse = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?limit=10`, {
+            method: 'GET',
+            headers: { 'Authorization': `Bearer ${accessToken}` }
+        });
+    
+        if (!tracksResponse.ok) throw new Error('Failed to fetch top hits');
+        
+        const tracksData = await tracksResponse.json();
+        return tracksData.items.map(item => item.track);
     }
+    
     async function searchSongs() {
         const userInput = new URLSearchParams(window.location.search).get('query');
         const accessToken = await getAccessToken();
@@ -132,24 +186,31 @@ document.addEventListener('DOMContentLoaded', () => {
         renderSongs(songs);
     }
     // Pagination Buttons
-    document.getElementById('nextButton').addEventListener('click', () => {
-        currentPage++;
-        searchSongs();
-    });
+    const nextButton = document.getElementById('nextButton');
+    const prevButton = document.getElementById('prevButton');
     
-    document.getElementById('prevButton').addEventListener('click', () => {
-        if (currentPage > 1) {
-            currentPage--;
+    if (nextButton) {
+        nextButton.addEventListener('click', () => {
+            currentPage++;
             searchSongs();
-        }
-    });
-});
-
-setTimeout(() => {
-    const searchQuerySpan = document.getElementById('search-query');
-    const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get('query');
-    if (searchQuerySpan && query) {
-        searchQuerySpan.textContent = decodeURIComponent(query);
+        });
     }
-}, 1000);
+    
+    if (prevButton) {
+        prevButton.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                searchSongs();
+            }
+        });
+    }
+
+    setTimeout(() => {
+        const searchQuerySpan = document.getElementById('search-query');
+        const urlParams = new URLSearchParams(window.location.search);
+        const query = urlParams.get('query');
+        if (searchQuerySpan && query) {
+            searchQuerySpan.textContent = decodeURIComponent(query);
+        }
+    }, 1000);
+});
