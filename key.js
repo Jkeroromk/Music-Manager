@@ -6,9 +6,12 @@ const clientId = 'a46a3ac979964d9d8f3cb3152e3a1cbe';
 const clientSecret = '961849266f2f41bd94c05f31fc67c01c';
 let allSongs = []; // This will store all fetched songs
 let currentPage = 1;
-const limit = 10;
+let limit = 10;
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Set initial limit
+    limit = calculateLimit();
+    
     // Functions to handle API interactions
     async function getAccessToken() {
         const credentials = btoa(`${clientId}:${clientSecret}`);
@@ -42,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const screenWidth = window.innerWidth;
 
         if (screenWidth > 1200) {
-            return 30; // Large screens, show more songs
+            return 25; // Large screens, show more songs
         } else if (screenWidth > 768) {
             return 20; // Medium screens, show fewer songs
         } else {
