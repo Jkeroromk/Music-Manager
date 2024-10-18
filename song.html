@@ -86,7 +86,7 @@
                 <div class="sepre"></div>
                 <div class="results-container">
                   <div class="results-row">
-                    
+
                   </div>
                     <div id="songs-loading">
                       <i class="fa-solid fa-hourglass-half"></i>                       
@@ -117,13 +117,19 @@
               <div class="circle"></div>
         </div>      
     </section>
-    <section>
-        <div class="pagination ">
-          <a href="#"><button id="prevButton" class="page-btn"><i class="fa-solid fa-arrow-left"></i></button></a>
-          <span id="pageInfo"></span>
-          <a href="#"><button id="nextButton" class="page-btn" ><i class="fa-solid fa-arrow-right"></i></button></a>
-        </div>
-        </section>
+   <section>
+    <div class="pagination">
+        <button id="prevButton" class="page-btn" disabled>
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <span id="pageInfo"></span>
+        <button id="nextButton" class="page-btn">
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+</section>
+<div id="songs-loading" style="display: none;">Loading...</div>
+
     <footer>
         <div class="row footer__row">
           <a href="#" class="footer__anchor">

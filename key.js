@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (screenWidth > 768) {
             return 20; // Medium screens, show fewer songs
         } else {
-            return 10; // Small screens, show even fewer songs
+            return 10; 
         }
     }
 
@@ -131,47 +131,57 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Function to filter songs
-    function filterSongs(event) {
-        const sortBy = event.target.value;
-        if (!allSongs.length) {
-            console.error("No songs available for filtering.");
-            return;
-        }
-
-        const sortedSongs = [...allSongs]; // Create a copy of allSongs
-
-        switch (sortBy) {
-            case 'ArtistName':
-                sortedSongs.sort((a, b) => a.artists[0].name.localeCompare(b.artists[0].name));
-                break;
-            case 'AlbumName':
-                sortedSongs.sort((a, b) => a.album.name.localeCompare(b.album.name));
-                break;
-            case 'Duration':
-                sortedSongs.sort((a, b) => a.duration_ms - b.duration_ms);
-                break;
-            case 'Popularity':
-                sortedSongs.sort((a, b) => b.popularity - a.popularity); // Higher popularity comes first
-                break;
-            default:
-                return;
-        }
-
-        renderSongs(sortedSongs); // Render the sorted songs
+    // Function to filter songs
+function filterSongs(event) {
+    const sortBy = event.target.value;
+    if (!allSongs.length) {
+        console.error("No songs available for filtering.");
+        return;
     }
+
+    const sortedSongs = [...allSongs]; // Create a copy of allSongs
+
+    switch (sortBy) {
+        case 'ArtistName':
+            sortedSongs.sort((a, b) => a.artists[0].name.localeCompare(b.artists[0].name));
+            break;
+        case 'AlbumName':
+            sortedSongs.sort((a, b) => a.album.name.localeCompare(b.album.name));
+            break;
+        case 'Duration':
+            sortedSongs.sort((a, b) => a.duration_ms - b.duration_ms);
+            break;
+        case 'Popularity':
+            sortedSongs.sort((a, b) => b.popularity - a.popularity); // Higher popularity comes first
+            break;
+        default:
+            return;
+    }
+
+    const SongsWrapper = document.querySelector('.results-row');
+    showSpinner();
+    SongsWrapper.style.display = 'none'; 
+
+    setTimeout(() => {
+        renderSongs(sortedSongs); 
+        hideSpinner(); // Hide the spinner
+        SongsWrapper.style.display = ''; // Show songs again
+    }, 500); //
+}
+
 
     // Spinner Control Functions
     function showSpinner() {
         const spinner = document.getElementById('songs-loading');
         if (spinner) {
-            spinner.style.display = '';
+            spinner.style.display = ''; // Change to 'block' or another display type to make it visible
         }
     }
-
+    
     function hideSpinner() {
         const spinner = document.getElementById('songs-loading');
         if (spinner) {
-            spinner.style.display = 'none';
+            spinner.style.display = 'none'; // Hide the spinner
         }
     }
 
@@ -263,26 +273,43 @@ document.addEventListener('DOMContentLoaded', function() {
     const prevButton = document.getElementById('prevButton');
 
     if (nextButton) {
-        nextButton.addEventListener('click', () => {
+        nextButton.addEventListener('click', async () => {
             currentPage++;
-            searchSongs();
+            showSpinner(); // Show the spinner
+            const SongsWrapper = document.querySelector('.results-row');
+            SongsWrapper.style.display = 'none'; // Hide songs temporarily
+            await searchSongs(); // Await the searchSongs function
+            setTimeout(() => {
+                hideSpinner(); // Hide the spinner after a delay
+                SongsWrapper.style.display = '';
+            }, 1000); // Delay of 1 second
         });
     }
-
+    
     if (prevButton) {
-        prevButton.addEventListener('click', () => {
+        prevButton.addEventListener('click', async () => {
             if (currentPage > 1) {
                 currentPage--;
-                searchSongs();
+                showSpinner(); // Show the spinner
+                const SongsWrapper = document.querySelector('.results-row');
+                SongsWrapper.style.display = 'none'; // Hide songs temporarily
+                await searchSongs(); // Await the searchSongs function
+                setTimeout(() => {
+                    hideSpinner(); // Hide the spinner after a delay
+                    SongsWrapper.style.display = ''; 
+                }, 1000); // Delay of 1 second
             }
         });
     }
-
+    
+    
+    
     // Filter songs when the dropdown value changes
     const filterOptions = document.getElementById('filterOptions');
     if (filterOptions) {
         filterOptions.addEventListener('change', filterSongs);
     }
+    
 
     setTimeout(() => {
         const searchQuerySpan = document.getElementById('search-query');
