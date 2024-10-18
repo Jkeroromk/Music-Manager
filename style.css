@@ -27,6 +27,7 @@ h1{
 
 html{
     scroll-behavior: smooth;
+    cursor: none
 }
 
 section,
@@ -135,6 +136,7 @@ footer{
 .no-cursor{
     cursor: not-allowed;
 }
+
 
 .input-submit{
     display: flex;
