@@ -85,15 +85,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to render song results
     function renderSongs(songs, isFeatured = false) {
         const SongsWrapper = document.querySelector('.results-row');
+        
+        if (!SongsWrapper) {
+            return; // Safely exit if element is missing
+        }
+    
         SongsWrapper.innerHTML = ''; // Clear previous content
-
+    
         if (!songs || songs.length === 0) {
             SongsWrapper.innerHTML = '<p>No songs to display.</p>'; // Handle no results
             return;
         }
-
+    
         const fragment = document.createDocumentFragment();
-
+    
         songs.forEach((song) => {
             const songElement = document.createElement('div');
             songElement.classList.add('results-lists');
@@ -114,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             fragment.appendChild(songElement);
         });
-
+    
         SongsWrapper.appendChild(fragment);
     }
 
