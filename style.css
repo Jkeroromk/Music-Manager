@@ -14,6 +14,7 @@ a{
     text-decoration: none;
     color: #242424;
     font-weight: 500;
+    cursor: none;
 }
 
 p{
@@ -419,6 +420,7 @@ nav{
     margin-top: 32px;
     align-items: center;
     justify-content: center;
+    cursor: none;
 }
 
 .btn,
@@ -437,6 +439,7 @@ nav{
     max-width: 200px;
     justify-content: center;
     align-items: center;
+    cursor: none;
 }
 
 .btn span {
@@ -748,4 +751,22 @@ select {
     max-width: 200px;
     justify-content: center;
     align-items: center;
+    cursor: none;
 }
+
+
+#prevButton, #nextButton {
+    /* Existing styles */
+    transition: all 0.3s ease;
+    cursor: none;
+  }
+
+  #prevButton:hover {
+    transform: scale(1.3) translateX(-10px);
+  }
+  
+  #nextButton:hover {
+    transform: scale(1.3) translateX(10px);
+  }
+  
+  
