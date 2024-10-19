@@ -104,7 +104,9 @@ document.addEventListener('DOMContentLoaded', function() {
             songElement.classList.add('results-lists');
             songElement.innerHTML = `
                 <div class="results-lists-wrapper">
+                <a href="${song.external_urls.spotify}" target="_blank">
                     <img src="${song.album.images[0].url}" alt="${song.name} cover" class="songs-img">
+                </a>
                 </div>
                 <div class="column-info column-title">
                     <a href="${song.external_urls.spotify}" class="link-hover-effect link-hover-effect-black link-hover-effect--white" target="_blank">${song.name}</a>
