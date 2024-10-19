@@ -612,7 +612,7 @@ select {
     line-height: 40px;
     outline: none;
     padding: 0 16px;
-    width: 100%;
+    width: auto;
     max-width: 200px;
     display: flex;
     flex-direction: row;
