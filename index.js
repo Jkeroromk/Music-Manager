@@ -3,16 +3,26 @@ function toggleModal() {
     document.body.classList.toggle("model__open");
   }
   
+  document.addEventListener('DOMContentLoaded', function() {
+    const isDarkTheme = localStorage.getItem('darkTheme') === 'true';
+    if (isDarkTheme) {
+      document.body.classList.add("dark-theme");
+    }
+  });
+
+
   let contrastToggle = false;
-  function toggleContrast(){
-    contrastToggle = !contrastToggle;
-    if (contrastToggle) {
-      document.body.classList += " dark-theme"
-    }
-    else {
-      document.body.classList.remove("dark-theme")
-    }
+function toggleContrast(){
+  contrastToggle = !contrastToggle;
+  if (contrastToggle) {
+    document.body.classList += " dark-theme"
+    localStorage.setItem('darkTheme', 'true');
   }
+  else {
+    document.body.classList.remove("dark-theme")
+    localStorage.setItem('darkTheme', 'false');
+  }
+}
 // TOggle color theme
 
 const coords = { x: 0, y: 0 };
