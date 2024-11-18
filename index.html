@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Manager</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://kit.fontawesome.com/7db96a5cb9.js" crossorigin="anonymous"></script>
+    <script src="./index.js" defer></script>
+    <script src="./key.js" defer></script>
+</head>
+<body>
+    <section id="Landing-page">
+        <nav>
+          <figure>
+            <a href=""><i class="fa-brands fa-spotify spotify-logo"></i></a>
+          </figure>
+          <ul class="nav-links-list">
+            <li class="nav-link">
+              <a
+                href="#"
+                class="nav-link-anchor link-hover-effect link-hover-effect-black link-hover-effect--white no-cursor"
+                >Home</a
+              >
+            </li>
+            <li class="nav-link">
+              <a href="./song.html?featured=true" id="findsonglink" class="nav-link-anchor link-hover-effect link-hover-effect-black link-hover-effect--white">Find Featured Songs</a>
+          </li>
+            <li class="nav-link">
+              <a
+                href="#"
+                class="nav-link-anchor link-hover-effect link-hover-effect-black link-hover-effect--white no-cursor"
+                >Log in</a
+              >
+            </li>
+            <button class="btn_menu" onclick="openMenu()">
+                <i class="fa-solid fa-caret-down"></i>
+                    </button>
+            <div class="menu_backdrop">
+                <div class="menu_backdrop-container">
+                <button class="btn_menu btn_menu--close" onclick="closeMenu()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul class="menu_links">
+                    <li class="menu_list"><a href="https://jkeroromk.github.io/Advance-portfolio/" class="menu_link" onclick="closeMenu()" >About</a></li>
+                    <li class="menu_list"><a href="./song.html?featured=true" class="menu_link" onclick="closeMenu()">Songs</a></li>
+                    <li class="menu_list"><a href="" class="menu_link no-cursor" onclick="closeMenu()" >Contact</a></li>
+                    <li class="menu_list"><a href="#" class="menu_link no-cursor" onclick="closeMenu()" >Login</a></li>
+                    <li class="menu_list"><a href="#" class="menu_link no-cursor menu_signup" onclick="closeMenu()" >Sign Up</a></li>
+                 </ul>
+                </div>
+            </div>
+            <li class="nav-link click" onclick="toggleContrast()">
+                <a href="#" class="nav-link-anchor"
+                  ><i class="fa-solid fa-circle-half-stroke fa-spin"></i
+                ></a>
+              </li>
+          </ul>
+        </nav>
+    </section>    
+    <section class="search-section">
+        <div class="search-container">
+            <div class="search-row">
+                <h1 class="search-title">Find the music that you like the most</h1>
+                <h3 class="search-subtitle">Let's decide what type of music for you of the day</h3>
+                <div class="input-box">
+                  <form class="input-submit" id="searchForm">
+                      <input type="text" required class="searchInput" id="searchInput" placeholder="Search by Song name, artist, album or title" />
+                      <div class="btn-search">
+                          <button type="submit" class="btn" id="searchButton"><span class="gray">Search</span></button>
+                      </div>
+                  </form>
+              </div>
+              
+                
+                <div class="img-wrapper">
+                    <img class="search-img" src="./assets/wp8733088.png" alt="" />
+                </div>
+            </div>
+        </div>
+        <div class="cursor">
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+        </div>      
+    </section>
+    <section>
+      <audio src="./assets/bgm.mp3" autoplay></audio>
+        </section>
+    <footer >
+        <div class="row footer__row">
+          <a href="#" class="footer__anchor">
+            <figure class="footer__logo">
+              <img
+                src="./assets/Gray and Black Simple Studio Logo_processed.png"
+                class="footer_img"
+                alt=""
+              />
+            </figure>
+            <span class="footer__logo--popper">
+              Top
+              <i class="fas fa-arrow-up"></i>
+            </span>
+          </a>
+          <div class="footer__soical--list">
+            <a
+              href="https://github.com/Jkeroro69"
+              class="footer__soical--links link-hover-effect link-hover-effect--white"
+              target="_blank"
+              >Github</a
+            >
+            <a
+              href="https://www.linkedin.com/in/zexin-zou-4b7236155/"
+              class="footer__soical--links link-hover-effect link-hover-effect--white"
+              target="_blank"
+              >linkedin</a
+            >
+            <a
+              href="mailto:zzou2000@gmail.com"
+              class="footer__soical--links link-hover-effect link-hover-effect--white"
+              target="_blank"
+              >Email</a
+            >
+            <a
+              href="https://discord.gg/UVwaXxK77b"
+              class="footer__soical--links link-hover-effect link-hover-effect--white"
+              target="_blank"
+              >Discord</a
+            >
+          </div>
+          <div class="footer__copyright">Copyright © 2024 Zexin Zou</div>
+        </div>
+      </footer>    
+</body>
+</html>
+
+
+
